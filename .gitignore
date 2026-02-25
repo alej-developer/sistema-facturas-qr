@@ -1,0 +1,8 @@
+# Ignorar imágenes generadas localmente
+*.png
+*.jpg
+
+# Ignorar caché de Python
+__pycache__/
+*.pyc
+
