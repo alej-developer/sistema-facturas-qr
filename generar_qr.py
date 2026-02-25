@@ -12,7 +12,7 @@ datos_factura = {
         {"descripcion": "Cerveza", "cantidad": 3, "precio_unitario": 2.50}
     ],
     "impuestos_porcentaje": 10,
-    "total": 49.50
+    "total_pagado": 49.50
 }
 
 # Convertimos el diccionario de Python a un texto JSON estructurado
