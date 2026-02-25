@@ -23,30 +23,30 @@ def leer_qr(ruta_imagen):
 
 def analizar_factura(datos_factura): 
     """Realiza operaciones deductivas y validaciones sobre los datos de la factura."""
-print("\n--- INICIANDO AUDITORÍA DE FACTURA ---\n" \
-print(f"Proveedor: {datos_factura['proveedor']} | ID: {datos_factura['id_factura']}")
+    print("\n--- INICIANDO AUDITORÍA DE FACTURA ---\n")
+    print(f"Proveedor: {datos_factura['proveedor']} | ID: {datos_factura['id_factura']}")
 
-subtotal_calculado = 0 
+    subtotal_calculado = 0 
 
-print("\nDesglose de arttículos:")
-for articulo in datos_factura["conceptos"]:
-    costo_linea = articulo["cantidad"] * articulo["precio_unitario"]
-    subtotal_calculado += costo_linea
-    print(f" > {articulo['cantidad']}} x {articulo['descripcion']}: ") {costo_linea:.2f} EUR")
+    print("\nDesglose de arttículos:")
+    for articulo in datos_factura["conceptos"]:
+        costo_linea = articulo["cantidad"] * articulo["precio_unitario"]
+        subtotal_calculado += costo_linea
+        print(f" > {articulo['cantidad']} x {articulo['descripcion']}: {costo_linea:.2f} EUR")
 
-#Cálculos finales 
-impuestos_calculados = subtotal_calculado * (datos_factura["impuestos_porcentaje"] / 100)
-total_calculado = subtotal_calculado + impuestos_calculados
+    #Cálculos finales 
+    impuestos_calculados = subtotal_calculado * (datos_factura["impuestos_porcentaje"] / 100)
+    total_calculado = subtotal_calculado + impuestos_calculados
 
-print("\n--- RESULTADOS DEL ANÁLISIS ---")
-print(f"Total reportado en factura: {datos_factura['total_pagado']:.2f} EUR")
-print(f"Total calculado por el sistema: {total_calculado:.2f} EUR")
+    print("\n--- RESULTADOS DEL ANÁLISIS ---")
+    print(f"Total reportado en factura: {datos_factura['total_pagado']:.2f} EUR")
+    print(f"Total calculado por el sistema: {total_calculado:.2f} EUR")
 
-#Validación lógica
-if abs(datos_factura['total_pagado'] - total_calculado) < 0.01: # Margen para decimales
-    print("✅ ESTADO: Válido. Los montos coinciden perfectamente")
-else:
-    print("⚠️ ESTADO: Alerta. Discrepancia matemática detectada en la factura.")
+    #Validación lógica
+    if abs(datos_factura['total_pagado'] - total_calculado) < 0.01: # Margen para decimales
+        print("✅ ESTADO: Válido. Los montos coinciden perfectamente")
+    else:
+        print("⚠️ ESTADO: Alerta. Discrepancia matemática detectada en la factura.")
     
 # --- FLUJO PRINCIPAL DEL PROGRAMA --- 
 if __name__ == "__main__":
@@ -67,7 +67,7 @@ if __name__ == "__main__":
         except json.JSONDecodeError:
             print("Error: El contenido del QR no es un JSON válido.")
 
-        else: 
-            print("No se detectó ningún código QR en la imagen aportada.")
-            
+    else: 
+        print("No se detectó ningún código QR en la imagen aportada.")
+
 
